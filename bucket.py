@@ -4,6 +4,12 @@ from botocore.exceptions import ClientError
 import os
 import json
 import random
+import pathlib
+from pathlib import Path
+import tkinter as tk
+from tkinter import filedialog 
+
+
 
 
 def create_bucket(bucket_name, region=None):
@@ -85,8 +91,8 @@ if(not(bucket_exist)):
     print("Upload files")
     for i in range(1,11):
         print("uploading"+str(i)+"/10" )
-        upload_file("H:\\AWS\\images\\trueHotDog"+str(i)+".jpg", "hotdogchecker")
-        upload_file("H:\\AWS\\images\\falseHotDog"+str(i)+".jpg", "hotdogchecker")
+        upload_file(Path().absolute()+"\\images\\trueHotDog"+str(i)+".jpg", "hotdogchecker")
+        upload_file(Path().absolute()+"\\images\\falseHotDog"+str(i)+".jpg", "hotdogchecker")
     print("Files uploaded")
 
 
@@ -97,10 +103,26 @@ allImages = []
 for obj in bucket.objects.all():
     allImages.append(obj.key)
     
-# Let's shuffle the list, so we can show 4 randoms images
-print("Shuffle")
-random.shuffle(allImages)
+
 print(*allImages,  sep = "\n")
+
+if(input("1- upload file 2- get 4 randoms images [1-2] :")=='1'):
+    myDialog = tk.Tk()
+   # root.withdraw()
+    file_path = tk.filedialog.askopenfilename ( title = "Select a file ...",filetypes=(("png files","*.png"),("jpeg files","*.jpg"),("all files","*.*")))
+    myDialog.destroy()
+    print("uploading "+file_path)
+    upload_file(file_path,"hotdogchecker")
+    print("File added to bucket")
+    
+else:
+    # Let's shuffle the list, so we can show 4 randoms images
+    print("Shuffle")
+    random.shuffle(allImages)
+    print("Showing 4 images")
+    #Let's take the 4th first pictures (the list has been shuffled)
+    
+    print(Path().absolute())
 
 
     
