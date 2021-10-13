@@ -1,6 +1,7 @@
 # Cloud_Computing_LAB2
 Cloud_Computing_LAB2
 
+# files worker.py and client.py
 The repository will include all the files to run your code, A README, a small report describing your
 project and a 3 minutes maximum demo video of your code.
 - Deadline : October 31th 2021
@@ -16,3 +17,19 @@ on S3 Amazon Storage Cloud.
 – the client is limited to 10 numbers. If more numbers are entered, a message error should be sent
 – numbers must be positive - again a message error is sent to the client if one of the number is not
 positive
+
+# Files bucket.py
+
+Go Further: the hot-dog application
+You work for a very promising company which goal is to develop an app capable to recognize hot-dogs on
+images. To proceed, the company needs labeled data, meaning data with a label 1 when it represents a
+hot-dog ; 0 when it represents something else. To help collect and annotate data, you will create a new AWS
+application that shows a sample of images to a client (each image successively), let the client label each of
+the image, and record/store that label in a table.
+- The set of images available for labeling is stored in a S3 bucket
+- The file storing the label information for each image is also on a S3 bucket
+- Each client is shown 4 random images out of the total number of images that are in the bucket
+- If multiple client are shown the same image, you should record each answer in the same text file
+- A client can contribute and upload more hot-dog images to the bucket
+- You are free to choose whatever images you want to build the set of images (you need around 20
+images). Half of this images must represent hot-dogs. As for the other half, pick whatever you want
