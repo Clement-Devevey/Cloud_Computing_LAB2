@@ -27,9 +27,9 @@ hot-dog ; 0 when it represents something else. To help collect and annotate data
 application that shows a sample of images to a client (each image successively), let the client label each of
 the image, and record/store that label in a table.
 - [x] The set of images available for labeling is stored in a S3 bucket
-- [] The file storing the label information for each image is also on a S3 bucket
-- [] Each client is shown 4 random images out of the total number of images that are in the bucket
-- [] If multiple client are shown the same image, you should record each answer in the same text file
-- [] A client can contribute and upload more hot-dog images to the bucket
+- [ ] The file storing the label information for each image is also on a S3 bucket
+- [ ] Each client is shown 4 random images out of the total number of images that are in the bucket
+- [ ] If multiple client are shown the same image, you should record each answer in the same text file
+- [ ] A client can contribute and upload more hot-dog images to the bucket
 - [x] You are free to choose whatever images you want to build the set of images (you need around 20
 images). Half of this images must represent hot-dogs. As for the other half, pick whatever you want
