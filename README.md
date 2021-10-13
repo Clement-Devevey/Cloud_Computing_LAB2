@@ -1,7 +1,7 @@
 # Cloud_Computing_LAB2
 Cloud_Computing_LAB2
 
-# files worker.py and client.py
+# Files worker.py and client.py
 The repository will include all the files to run your code, A README, a small report describing your
 project and a 3 minutes maximum demo video of your code.
 - Deadline : October 31th 2021
