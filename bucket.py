@@ -119,11 +119,11 @@ else:
     # Let's shuffle the list, so we can show 4 randoms images
     print("Shuffle")
     random.shuffle(allImages)
+    # Check réupérerlien image OU DL images
     print("Showing 4 images")
     #Let's take the 4th first pictures (the list has been shuffled)
-    
-    print(Path().absolute())
-
+    for i in range (4):
+        print("https://hotdogchecker.s3.amazonaws.com/"+allImages[i])
 
     
 
