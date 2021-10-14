@@ -16,3 +16,11 @@ on S3 Amazon Storage Cloud.
 – the client is limited to 10 numbers. If more numbers are entered, a message error should be sent
 – numbers must be positive - again a message error is sent to the client if one of the number is not
 positive
+
+
+https://docs.djangoproject.com/fr/3.2/intro/tutorial01/
+https://medium.datadriveninvestor.com/basic-application-with-django-3afab115bb9a
+
+https://aws.plainenglish.io/using-node-js-to-display-images-in-a-private-aws-s3-bucket-4c043ed5c5d0
+
+
