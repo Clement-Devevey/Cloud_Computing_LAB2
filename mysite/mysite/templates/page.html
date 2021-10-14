@@ -1,0 +1,10 @@
+
+{% block includes %}
+<h1>Block 1</h1>
+{{ mytext }}
+
+{%for image in mytext%}
+    <P>{{image}}</P>
+    <img src="{{image}}" width="200px">
+{%endfor%}
+{% endblock includes %}
