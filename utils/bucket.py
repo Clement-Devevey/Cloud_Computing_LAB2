@@ -7,7 +7,7 @@ import random
 import pathlib
 from pathlib import Path
 import tkinter as tk
-from tkinter import filedialog 
+from tkinter import filedialog
 
 
 
@@ -61,73 +61,76 @@ def upload_file(file_name, bucket, object_name=None):
         return False
     return True
 
-# Get buckets from user
-s3 = boto3.client('s3')
-response = s3.list_buckets()
 
-# Output the bucket names and set True if hotdogchecker is already existing
-print("Checking bucket")
-bucket_exist = False
-print('Existing buckets:')
-for bucket in response['Buckets']:
-    if(bucket["Name"]=="hotdogchecker"):
-        bucket_exist = True
-    print(f'  {bucket["Name"]}')
-    
-# Create the bucket only if not already existing
-# Let's also add 20 images
-if(not(bucket_exist)):
-    print("Creating bucket")
-    create_bucket("hotdogchecker")
-    print("bucket OK")
-    # Create a bucket policy
-    print("Creating bucket policy")
+def init():
+    # Get buckets from user
+    s3 = boto3.client('s3')
+    response = s3.list_buckets()
 
-    # Convert the policy from JSON dict to string
-    # Set the new policy
-    s3.put_bucket_policy(Bucket="hotdogchecker",  Policy='{"Version": "2012-10-17", "Statement": [{ "Sid": "AddPermHotDog","Effect": "Allow","Principal": "*", "Action": [ "s3:GetObject" ], "Resource": ["arn:aws:s3:::hotdogchecker/*" ] } ]}')
+    # Output the bucket names and set True if hotdogchecker is already existing
+    print("Checking bucket")
+    bucket_exist = False
+    print('Existing buckets:')
+    for bucket in response['Buckets']:
+        if(bucket["Name"]=="hotdogchecker"):
+            bucket_exist = True
+        print(f'  {bucket["Name"]}')
 
-    print("Policy OK")
-    print("Upload files")
-    for i in range(1,11):
-        print("uploading"+str(i)+"/10" )
-        upload_file(Path().absolute()+"\\images\\trueHotDog"+str(i)+".jpg", "hotdogchecker")
-        upload_file(Path().absolute()+"\\images\\falseHotDog"+str(i)+".jpg", "hotdogchecker")
-    print("Files uploaded")
+    # Create the bucket only if not already existing
+    # Let's also add 20 images
+    if(not(bucket_exist)):
+        print("Creating bucket")
+        create_bucket("hotdogchecker")
+        print("bucket OK")
+        # Create a bucket policy
+        print("Creating bucket policy")
+
+        # Convert the policy from JSON dict to string
+        # Set the new policy
+        s3.put_bucket_policy(Bucket="hotdogchecker",  Policy='{"Version": "2012-10-17", "Statement": [{ "Sid": "AddPermHotDog","Effect": "Allow","Principal": "*", "Action": [ "s3:GetObject" ], "Resource": ["arn:aws:s3:::hotdogchecker/*" ] } ]}')
+
+        print("Policy OK")
+        print("Upload files")
+        for i in range(1,11):
+            print("uploading"+str(i)+"/10" )
+            upload_file(Path().absolute()+"\\images\\trueHotDog"+str(i)+".jpg", "hotdogchecker")
+            upload_file(Path().absolute()+"\\images\\falseHotDog"+str(i)+".jpg", "hotdogchecker")
+        print("Files uploaded")
 
 
-print("Getting images from cloud")
-s3 = boto3.resource('s3')
-bucket = s3.Bucket('hotdogchecker')
-allImages = []
-for obj in bucket.objects.all():
-    allImages.append(obj.key)
-    
+def uploadAFile():
 
-print(*allImages,  sep = "\n")
-
-if(input("1- upload file 2- get 4 randoms images [1-2] :")=='1'):
     myDialog = tk.Tk()
-   # root.withdraw()
+    # root.withdraw()
     file_path = tk.filedialog.askopenfilename ( title = "Select a file ...",filetypes=(("png files","*.png"),("jpeg files","*.jpg"),("all files","*.*")))
     myDialog.destroy()
     print("uploading "+file_path)
     upload_file(file_path,"hotdogchecker")
     print("File added to bucket")
-    
-else:
+    return 0
+
+
+def getUrlImages(): # return 0 if user choose to upload files
+    print("Getting images from cloud")
+    s3 = boto3.resource('s3')
+    bucket = s3.Bucket('hotdogchecker')
+    allImages = []
+    for obj in bucket.objects.all():
+        allImages.append(obj.key)
+
     # Let's shuffle the list, so we can show 4 randoms images
     print("Shuffle")
     random.shuffle(allImages)
     # Check réupérerlien image OU DL images
     print("Showing 4 images")
     #Let's take the 4th first pictures (the list has been shuffled)
+    UrlImages = []
     for i in range (4):
-        print("https://hotdogchecker.s3.amazonaws.com/"+allImages[i])
+        UrlImages.append("https://hotdogchecker.s3.amazonaws.com/"+allImages[i])
+        return UrlImages
 
-    
 
-
+print(getUrlImages())
 
 
 
