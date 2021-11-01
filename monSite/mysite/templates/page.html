@@ -1,0 +1,38 @@
+<html>
+  <head>
+    
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    
+  </head>
+  <body>
+{% block includes %}
+<h1>Les images suivantes sont-elles des hot-dogs ?</h1>
+<!-- {{ args }} -->
+
+  <form action="" method="post">
+  {% csrf_token %}
+{%for image in args%}
+    <h2>Image{{ forloop.counter }}</h2>
+    <img src="{{image}}" width="200px">
+  </br>
+{%endfor%}
+  {{ form }}
+      
+  {% endblock includes %}
+  <input type="submit" value="Submit">
+<button onClick="window.location.reload();">Rafraichir</button>
+  </form>
+    <h1> Ajouter une image </h1>
+  <form action="http://hotdogchecker.s3.amazonaws.com/" method="post" enctype="multipart/form-data">
+        File: 
+    <input type="hidden"  name="key" value="${filename}" />
+    <input type="hidden" name="acl" value="public-read" />
+    <input type="hidden" name="success_action_redirect" value="https://hotdogchecker.s3.amazonaws.com/${filename}" />
+    <input type="hidden"  name="Content-Type" value="image/jpeg" />
+    <input type="file"   name="file" /> <br />
+    <!-- The elements after this will be ignored -->
+    <input type="submit" name="submit" value="Upload to Amazon S3" />
+
+  </form>
+  
+</html>
