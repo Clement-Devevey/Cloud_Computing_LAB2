@@ -18,13 +18,6 @@ on S3 Amazon Storage Cloud.
 – numbers must be positive - again a message error is sent to the client if one of the number is not
 positive
 
-<<<<<<< HEAD
-
-https://docs.djangoproject.com/fr/3.2/intro/tutorial01/
-https://medium.datadriveninvestor.com/basic-application-with-django-3afab115bb9a
-
-https://aws.plainenglish.io/using-node-js-to-display-images-in-a-private-aws-s3-bucket-4c043ed5c5d0
-
 
 =======
 # Files bucket.py
@@ -42,4 +35,3 @@ the image, and record/store that label in a table.
 - [x] A client can contribute and upload more hot-dog images to the bucket
 - [x] You are free to choose whatever images you want to build the set of images (you need around 20
 images). Half of this images must represent hot-dogs. As for the other half, pick whatever you want
->>>>>>> 7e27282eb829748102691837291b02129312a4e2
