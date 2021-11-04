@@ -4,7 +4,6 @@ Cloud_Computing_LAB2
 # Files worker.py and client.py
 The repository will include all the files to run your code, A README, a small report describing your
 project and a 3 minutes maximum demo video of your code.
-- Deadline : October 31th 2021
 
 Goals
 - Create an AWS application in which a client submits a request to a worker on EC2. The request is
