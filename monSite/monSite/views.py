@@ -39,7 +39,8 @@ def getUrlImages(): # return 0 if user choose to upload files
     bucket = s3.Bucket('hotdogchecker')
     allImages = []
     for obj in bucket.objects.all():
-        allImages.append(obj.key)
+        if("txt" not in obj.key):
+            allImages.append(obj.key)
 
     # Let's shuffle the list, so we can show 4 randoms images
     print("Shuffle")
@@ -66,15 +67,16 @@ def contact(request):
             # getCheckedItems
             checkItems = [0,0,0,0]
             for i in range(4):
-                if('image'+str(i+1) in form.cleaned_data['couleur']): 
+                if('image'+str(i+1) in form.cleaned_data['hotdog']): 
                     checkItems[i] = 1
 
             # Writing
             for images in request.session.get('args'):
-                if((images.replace('https://hotdogchecker.s3.amazonaws.com/', '')+"\n") not in myImages):
+                if(not(any((images.replace('https://hotdogchecker.s3.amazonaws.com/', '')) in string for string in myImages))):
                     with open('testOn.txt', 'a') as writer:
                         writer.write(images.replace('https://hotdogchecker.s3.amazonaws.com/', '')+"\n")
 
+            dejaEcrit = False
             with open('testOn.txt', 'r') as istr:
                 with open('output.txt', 'w') as ostr:
                     ostr.truncate(0)
@@ -82,12 +84,22 @@ def contact(request):
                         for i in range(4):
                             if request.session.get('args')[i].replace('https://hotdogchecker.s3.amazonaws.com/', '') in line:
                                 if(checkItems[i]==0):
+                                    dejaEcrit= True
                                     line = line.rstrip('\n') + ' 0'
+                                    print(line, file=ostr)
                                 else:
+                                    dejaEcrit= True
                                     line = line.rstrip('\n') + ' 1'
+                                    print(line, file=ostr)
+                                    
                             else:
                                 line = line.rstrip('\n')
-                        print(line, file=ostr)
+
+                        if(not(dejaEcrit)):
+                            print(line, file=ostr)
+                        dejaEcrit= False
+                        
+                            
             #os.remove("testOn.txt")
             #os.rename('output.txt', 'testOn.txt')
             upload_file('output.txt', 'hotdogchecker', 'testOn.txt')
