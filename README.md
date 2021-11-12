@@ -1,7 +1,6 @@
 # Cloud_Computing_LAB2
-Cloud_Computing_LAB2
 
-# Files worker.py and client.py
+# Directory worker-client
 The repository will include all the files to run your code, A README, a small report describing your
 project and a 3 minutes maximum demo video of your code.
 
@@ -18,8 +17,7 @@ on S3 Amazon Storage Cloud.
 positive
 
 
-=======
-# Files bucket.py
+# Directory monSite
 
 Go Further: the hot-dog application
 You work for a very promising company which goal is to develop an app capable to recognize hot-dogs on
@@ -34,6 +32,8 @@ the image, and record/store that label in a table.
 - [x] A client can contribute and upload more hot-dog images to the bucket
 - [x] You are free to choose whatever images you want to build the set of images (you need around 20
 images). Half of this images must represent hot-dogs. As for the other half, pick whatever you want
+
+Thanks to Django, we have been able to link HTML and python. This way, we can get images from the bucket s3 and send the link of theses images to the HTML page. There is also a log file, called testOn.txt, to remember what choices users have made. Users make choices by checking checkbox and then press submit button. 
 
 # Team
 - Alexis DEGRANGE
