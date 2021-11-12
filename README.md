@@ -34,3 +34,7 @@ the image, and record/store that label in a table.
 - [x] A client can contribute and upload more hot-dog images to the bucket
 - [x] You are free to choose whatever images you want to build the set of images (you need around 20
 images). Half of this images must represent hot-dogs. As for the other half, pick whatever you want
+
+# Team
+- Alexis DEGRANGE
+- Clément DEVEVEY
